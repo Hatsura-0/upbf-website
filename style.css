@@ -77,6 +77,18 @@ ul {
   list-style: none;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 p {
   color: var(--ink-soft);
 }
@@ -153,7 +165,7 @@ p {
 }
 
 .nav-toggle {
-  display: none;
+  position: absolute;
 }
 
 .nav-toggle-label {
@@ -176,6 +188,11 @@ p {
   height: 2px;
   background: var(--ink);
   border-radius: 999px;
+}
+
+.nav-toggle:focus-visible + .nav-toggle-label {
+  outline: 3px solid rgba(123, 17, 19, 0.45);
+  outline-offset: 4px;
 }
 
 .site-nav {
@@ -431,6 +448,17 @@ main {
   object-fit: cover;
 }
 
+.card--slide img {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: contain;
+  background: var(--white);
+}
+
+.card--dark.card--slide img {
+  background: #171d24;
+}
+
 .card--image figcaption {
   padding: 1rem 1.1rem 1.15rem;
   color: var(--ink-soft);
@@ -539,6 +567,12 @@ main {
   object-fit: cover;
 }
 
+.profile-card.card--slide img {
+  height: auto;
+  object-fit: contain;
+  background: var(--white);
+}
+
 .profile-card > div {
   padding: 0 1.2rem 1.2rem;
 }
@@ -551,10 +585,37 @@ main {
   margin-top: 1.25rem;
 }
 
+.contact-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.6rem;
+}
+
+.contact-panel__meta {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.25rem;
+}
+
+.contact-panel__meta span {
+  display: block;
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(123, 17, 19, 0.06);
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
 .contact-form {
   display: grid;
   gap: 1rem;
   padding: 1.4rem;
+}
+
+.form-helper {
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .form-group {
@@ -771,5 +832,29 @@ textarea:focus {
   .section--compact {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .lift-card:hover,
+  .lift-card:focus-within,
+  .button:hover,
+  .button:focus-visible,
+  .text-link:hover,
+  .text-link:focus-visible {
+    transform: none;
   }
 }
