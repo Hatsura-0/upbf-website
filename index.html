@@ -8,7 +8,19 @@
 <title>UP Brotherhood of the Filipinos 55 | UP Diliman</title>
 <link href="website_icon.png" rel="icon" type="image/png"/>
 <link href="website_icon.png" rel="apple-touch-icon"/>
+<script>
+  (() => {
+    try {
+      const savedTheme = localStorage.getItem("upbf-theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+    } catch {
+      document.documentElement.dataset.theme = "light";
+    }
+  })();
+</script>
 <link href="style.css" rel="stylesheet"/>
+<script defer src="theme.js"></script>
 <link href="https://up-pinoy55.com/" rel="canonical"/>
 <meta content="#7b1113" name="theme-color"/>
 <meta content="UP Brotherhood of the Filipinos 55" property="og:site_name"/>
@@ -39,6 +51,16 @@
 <span class="brand__sub">University of the Philippines Diliman</span>
 </span>
 </a>
+<button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" data-theme-toggle type="button">
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--sun" fill="none" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="3.5"></circle>
+<path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.41 1.41M6.69 17.31l-1.41 1.41M18.72 18.72l-1.41-1.41M6.69 6.69 5.28 5.28"></path>
+</svg>
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--moon" fill="none" viewBox="0 0 24 24">
+<path d="M20.5 15.1A8.5 8.5 0 0 1 8.9 3.5 8.5 8.5 0 1 0 20.5 15.1Z"></path>
+</svg>
+<span class="visually-hidden" data-theme-label>Switch to dark mode</span>
+</button>
 <input aria-controls="primary-navigation" class="nav-toggle visually-hidden" id="nav-toggle" type="checkbox"/>
 <label aria-label="Toggle navigation menu" class="nav-toggle-label" for="nav-toggle">
 <span></span>
