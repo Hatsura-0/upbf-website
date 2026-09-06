@@ -28,7 +28,7 @@ function updateToggle(theme) {
 
 function applyTheme(theme) {
   root.dataset.theme = theme;
-  themeColor?.setAttribute("content", theme === "dark" ? "#0d141c" : "#7b1113");
+  themeColor?.setAttribute("content", theme === "dark" ? "#171918" : "#761d2b");
   updateToggle(theme);
 }
 
@@ -51,5 +51,19 @@ themeToggle?.addEventListener("click", () => {
 systemTheme.addEventListener("change", (event) => {
   if (!getSavedTheme()) {
     applyTheme(event.matches ? "dark" : "light");
+  }
+});
+
+// Close the mobile menu after navigation and return focus on Escape.
+const navToggle = document.querySelector("#nav-toggle");
+document.querySelectorAll(".site-nav a").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (navToggle) navToggle.checked = false;
+  });
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navToggle?.checked) {
+    navToggle.checked = false;
+    navToggle.focus();
   }
 });
